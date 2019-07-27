@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lims.core.mapper.ApplyMapper" >
+  <resultMap id="BaseResultMap" type="com.lims.core.pojo.Apply" >
+    <id column="apply_id" property="applyId" jdbcType="INTEGER" />
+    <result column="date_start" property="dateStart" jdbcType="DATE" />
+    <result column="date_end" property="dateEnd" jdbcType="DATE" />
+    <result column="laboratory_id" property="laboratoryId" jdbcType="INTEGER" />
+    <result column="equipment_id" property="equipmentId" jdbcType="INTEGER" />
+    <result column="a_status" property="aStatus" jdbcType="INTEGER" />
+    <result column="number" property="number" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    apply_id, date_start, date_end, laboratory_id, equipment_id, a_status, number
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lims.core.pojo.ApplyExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from apply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from apply
+    where apply_id = #{applyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from apply
+    where apply_id = #{applyId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lims.core.pojo.ApplyExample" >
+    delete from apply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lims.core.pojo.Apply" >
+    insert into apply (apply_id, date_start, date_end, 
+      laboratory_id, equipment_id, a_status, 
+      number)
+    values (#{applyId,jdbcType=INTEGER}, #{dateStart,jdbcType=DATE}, #{dateEnd,jdbcType=DATE}, 
+      #{laboratoryId,jdbcType=INTEGER}, #{equipmentId,jdbcType=INTEGER}, #{aStatus,jdbcType=INTEGER}, 
+      #{number,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lims.core.pojo.Apply" >
+    insert into apply
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="applyId != null" >
+        apply_id,
+      </if>
+      <if test="dateStart != null" >
+        date_start,
+      </if>
+      <if test="dateEnd != null" >
+        date_end,
+      </if>
+      <if test="laboratoryId != null" >
+        laboratory_id,
+      </if>
+      <if test="equipmentId != null" >
+        equipment_id,
+      </if>
+      <if test="aStatus != null" >
+        a_status,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="applyId != null" >
+        #{applyId,jdbcType=INTEGER},
+      </if>
+      <if test="dateStart != null" >
+        #{dateStart,jdbcType=DATE},
+      </if>
+      <if test="dateEnd != null" >
+        #{dateEnd,jdbcType=DATE},
+      </if>
+      <if test="laboratoryId != null" >
+        #{laboratoryId,jdbcType=INTEGER},
+      </if>
+      <if test="equipmentId != null" >
+        #{equipmentId,jdbcType=INTEGER},
+      </if>
+      <if test="aStatus != null" >
+        #{aStatus,jdbcType=INTEGER},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lims.core.pojo.ApplyExample" resultType="java.lang.Integer" >
+    select count(*) from apply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update apply
+    <set >
+      <if test="record.applyId != null" >
+        apply_id = #{record.applyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.dateStart != null" >
+        date_start = #{record.dateStart,jdbcType=DATE},
+      </if>
+      <if test="record.dateEnd != null" >
+        date_end = #{record.dateEnd,jdbcType=DATE},
+      </if>
+      <if test="record.laboratoryId != null" >
+        laboratory_id = #{record.laboratoryId,jdbcType=INTEGER},
+      </if>
+      <if test="record.equipmentId != null" >
+        equipment_id = #{record.equipmentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.aStatus != null" >
+        a_status = #{record.aStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.number != null" >
+        number = #{record.number,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update apply
+    set apply_id = #{record.applyId,jdbcType=INTEGER},
+      date_start = #{record.dateStart,jdbcType=DATE},
+      date_end = #{record.dateEnd,jdbcType=DATE},
+      laboratory_id = #{record.laboratoryId,jdbcType=INTEGER},
+      equipment_id = #{record.equipmentId,jdbcType=INTEGER},
+      a_status = #{record.aStatus,jdbcType=INTEGER},
+      number = #{record.number,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lims.core.pojo.Apply" >
+    update apply
+    <set >
+      <if test="dateStart != null" >
+        date_start = #{dateStart,jdbcType=DATE},
+      </if>
+      <if test="dateEnd != null" >
+        date_end = #{dateEnd,jdbcType=DATE},
+      </if>
+      <if test="laboratoryId != null" >
+        laboratory_id = #{laboratoryId,jdbcType=INTEGER},
+      </if>
+      <if test="equipmentId != null" >
+        equipment_id = #{equipmentId,jdbcType=INTEGER},
+      </if>
+      <if test="aStatus != null" >
+        a_status = #{aStatus,jdbcType=INTEGER},
+      </if>
+      <if test="number != null" >
+        number = #{number,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where apply_id = #{applyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lims.core.pojo.Apply" >
+    update apply
+    set date_start = #{dateStart,jdbcType=DATE},
+      date_end = #{dateEnd,jdbcType=DATE},
+      laboratory_id = #{laboratoryId,jdbcType=INTEGER},
+      equipment_id = #{equipmentId,jdbcType=INTEGER},
+      a_status = #{aStatus,jdbcType=INTEGER},
+      number = #{number,jdbcType=VARCHAR}
+    where apply_id = #{applyId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,36 @@
+body {
+    background-image: url("../../img/index.jpg");
+    verflow: hidden;
+}
+form {
+    line-height: 35px;
+    font-size: large;
+}
+h1{
+    text-align: center;
+}
+#dd{
+    width: 340px;
+    /*background-color: #7edbfe;*/
+    /*background-color: #a8e9ff;*/
+    /*background-color: #c1eefe;*/
+    padding: 25px 25px 8px 25px;
+    border-radius:15px
+}
+.btn1 {
+    background-color: #7edbfe;
+    border: #0C81C4;
+}
+p{
+    text-align: center;
+    font-size: 23px;
+    font-weight:bolder;
+}
+.login{
+    font-size: large;
+    font-weight:bolder;
+}
+#code{
+    width: 125px;
+    height: 32px;
+}

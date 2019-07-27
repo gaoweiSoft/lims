@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lims.core.mapper.EquipmentMapper" >
+  <resultMap id="BaseResultMap" type="com.lims.core.pojo.Equipment" >
+    <id column="e_id" property="eId" jdbcType="INTEGER" />
+    <result column="equipment_id" property="equipmentId" jdbcType="INTEGER" />
+    <result column="manufacturer" property="manufacturer" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="DATE" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="laboratory_id" property="laboratoryId" jdbcType="INTEGER" />
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+    <result column="version" property="version" jdbcType="VARCHAR" />
+  </resultMap>
+  
+   <resultMap id="TypeResultMap" type="com.lims.core.pojo.EquipmentType" >
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="count" property="count" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    e_id, equipment_id, manufacturer, type, time, status, laboratory_id, del_flag, version
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lims.core.pojo.EquipmentExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from equipment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from equipment
+    where e_id = #{eId,jdbcType=INTEGER}
+  </select>
+  
+  
+    <select id="selectByType" resultMap="TypeResultMap" parameterType="java.lang.String" >
+    select type,count(*) count FROM equipment where del_flag=0 GROUP BY type 
+  </select>
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from equipment
+    where e_id = #{eId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lims.core.pojo.EquipmentExample" >
+    delete from equipment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lims.core.pojo.Equipment" >
+    insert into equipment (e_id, equipment_id, manufacturer, 
+      type, time, status, laboratory_id, 
+      del_flag, version)
+    values (#{eId,jdbcType=INTEGER}, #{equipmentId,jdbcType=INTEGER}, #{manufacturer,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{time,jdbcType=DATE}, #{status,jdbcType=INTEGER}, #{laboratoryId,jdbcType=INTEGER}, 
+      #{delFlag,jdbcType=INTEGER}, #{version,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lims.core.pojo.Equipment" >
+    insert into equipment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="eId != null" >
+        e_id,
+      </if>
+      <if test="equipmentId != null" >
+        equipment_id,
+      </if>
+      <if test="manufacturer != null" >
+        manufacturer,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="laboratoryId != null" >
+        laboratory_id,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="eId != null" >
+        #{eId,jdbcType=INTEGER},
+      </if>
+      <if test="equipmentId != null" >
+        #{equipmentId,jdbcType=INTEGER},
+      </if>
+      <if test="manufacturer != null" >
+        #{manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=DATE},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="laboratoryId != null" >
+        #{laboratoryId,jdbcType=INTEGER},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=INTEGER},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lims.core.pojo.EquipmentExample" resultType="java.lang.Integer" >
+    select count(*) from equipment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update equipment
+    <set >
+      <if test="record.eId != null" >
+        e_id = #{record.eId,jdbcType=INTEGER},
+      </if>
+      <if test="record.equipmentId != null" >
+        equipment_id = #{record.equipmentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.manufacturer != null" >
+        manufacturer = #{record.manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.time != null" >
+        time = #{record.time,jdbcType=DATE},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.laboratoryId != null" >
+        laboratory_id = #{record.laboratoryId,jdbcType=INTEGER},
+      </if>
+      <if test="record.delFlag != null" >
+        del_flag = #{record.delFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.version != null" >
+        version = #{record.version,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update equipment
+    set e_id = #{record.eId,jdbcType=INTEGER},
+      equipment_id = #{record.equipmentId,jdbcType=INTEGER},
+      manufacturer = #{record.manufacturer,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=VARCHAR},
+      time = #{record.time,jdbcType=DATE},
+      status = #{record.status,jdbcType=INTEGER},
+      laboratory_id = #{record.laboratoryId,jdbcType=INTEGER},
+      del_flag = #{record.delFlag,jdbcType=INTEGER},
+      version = #{record.version,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lims.core.pojo.Equipment" >
+    update equipment
+    <set >
+      <if test="equipmentId != null" >
+        equipment_id = #{equipmentId,jdbcType=INTEGER},
+      </if>
+      <if test="manufacturer != null" >
+        manufacturer = #{manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=DATE},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="laboratoryId != null" >
+        laboratory_id = #{laboratoryId,jdbcType=INTEGER},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=INTEGER},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where e_id = #{eId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lims.core.pojo.Equipment" >
+    update equipment
+    set equipment_id = #{equipmentId,jdbcType=INTEGER},
+      manufacturer = #{manufacturer,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      time = #{time,jdbcType=DATE},
+      status = #{status,jdbcType=INTEGER},
+      laboratory_id = #{laboratoryId,jdbcType=INTEGER},
+      del_flag = #{delFlag,jdbcType=INTEGER},
+      version = #{version,jdbcType=VARCHAR}
+    where e_id = #{eId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,159 @@
+body {
+	background-color: #9acfea;
+	verflow: hidden;
+	/*width: 1349px;*/
+}
+
+h1 {
+	text-align: center;
+}
+
+h3 {
+	color: red;
+	text-align: center;
+}
+
+a {
+	color: red;
+	text-decoration: none;
+}
+
+a:link, a:hover {
+	text-decoration: none;
+}
+
+.top_bottom {
+	background-color: #46b8da;
+	border: #0C81C4;
+}
+
+.menu {
+	color: #fff;
+}
+
+#myTabDrop1 {
+	background-color: #9acfea;
+	border: none;
+	margin-right: -2px;"
+}
+
+#menu {
+	position: relative;
+	height: 271px;
+	width: 328px;
+	background: #ccc;
+	text-align: center;
+}
+
+#menu dt {
+	position: absolute;
+	right: 5px;
+	bottom: 5px;
+}
+
+#menu dt a {
+	float: left;
+	display: block;
+	padding: 1px 5px 1px 5px;
+	border: 1px solid #ccc;
+	margin-left: 4px;
+	text-decoration: none;
+	color: red;
+	font-size: 13px;
+}
+
+#menu dt a:hover {
+	background: #fff;
+	color: #FF0000;
+}
+
+#menu dd {
+	width: 328px;
+	height: 271px;
+	overflow: hidden;
+}
+
+#div1 {
+	overflow: hidden;
+}
+
+.page {
+	margin-top: 30px;
+}
+
+.font_style {
+	font-size: medium;
+	font-weight: bold;
+	color: #777;
+	border: hidden
+}
+
+.dropdown {
+	background-color: #46b8da;
+}
+
+.content_left {
+	margin-left: 7%;
+	margin-right: 5%;
+}
+
+.content_right {
+	margin-left: 5%;
+	margin-right: 7%;
+}
+
+.page_text {
+	font-size: 22px;;
+	margin-top: -22px;
+}
+
+.back_col {
+	background-color: #9acfea;
+	border: none;
+}
+
+.group_label {
+	font-size: large;
+	font-weight: bolder;
+}
+
+@media screen and (max-width: 1200px) {
+	.content_left {
+		margin-left: 2%;
+		margin-right: 7%;
+	}
+	.content_right {
+		margin-left: 7%;
+		margin-right: 2%;
+	}
+}
+
+@media screen and (max-width: 1050px) {
+	.content_left {
+		margin-left: 30%;
+		margin-right: 8%;
+	}
+	.content_right {
+		margin-left: 30%;
+		margin-right: 8%;
+	}
+	.content {
+		margin-left: 30%;
+		margin-right: 8%;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.content_left {
+		margin-left: 20%;
+		margin-right: 8%;
+	}
+	.content_right {
+		margin-left: 20%;
+		margin-right: 8%;
+	}
+	.content {
+		margin-left: 20%;
+		margin-right: 8%;
+	}
+}
