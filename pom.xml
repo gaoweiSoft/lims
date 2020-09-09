@@ -19,7 +19,7 @@
 	  <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	  <version.feilong-platform>1.10.0</version.feilong-platform>
 	  <log4j-core-version>2.6.2</log4j-core-version>
-	  <hibernate-validator-version>5.3.4.Final</hibernate-validator-version>
+	  <hibernate-validator-version>5.3.6.Final</hibernate-validator-version>
     </properties>
     <repositories>
         <repository>
