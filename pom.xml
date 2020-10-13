@@ -6,7 +6,7 @@
   <packaging>war</packaging>
   <properties>
 	  <java-version>1.8</java-version>
-	  <junit-version>4.12</junit-version>
+	  <junit-version>4.13.1</junit-version>
 	  <org.springframework-version>4.3.1.RELEASE</org.springframework-version>
 	  <org.mybatis-version>3.4.2</org.mybatis-version>
 	  <pagehelper-version>4.1.4</pagehelper-version>
