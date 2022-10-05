@@ -15,7 +15,7 @@
 	  <mysql-connector-java-version>6.0.5</mysql-connector-java-version>
 	  <commons.fileupload-version>1.3.2</commons.fileupload-version>
 	  <commons-beanutils-core-version>1.8.3</commons-beanutils-core-version>
-	  <jackson.databind-version>2.8.4</jackson.databind-version>
+	  <jackson.databind-version>2.12.6.1</jackson.databind-version>
 	  <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	  <version.feilong-platform>1.10.0</version.feilong-platform>
 	  <log4j-core-version>2.6.2</log4j-core-version>
