@@ -18,7 +18,7 @@
 	  <jackson.databind-version>2.8.4</jackson.databind-version>
 	  <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	  <version.feilong-platform>1.10.0</version.feilong-platform>
-	  <log4j-core-version>2.6.2</log4j-core-version>
+	  <log4j-core-version>2.17.1</log4j-core-version>
 	  <hibernate-validator-version>5.3.4.Final</hibernate-validator-version>
     </properties>
     <repositories>
